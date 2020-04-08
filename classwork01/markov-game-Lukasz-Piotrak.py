@@ -24,12 +24,12 @@ class state:
         self.prob_sum = new_prob_sum
 
     def transition(self):
-        states_with_self = self.t_states.append(self)
-        transitions_with_self = self.t_probs.append(1 - self.prob_sum)
+        states_with_self = self.t_states + [ self ]
+        transitions_with_self = self.t_probs + [ 1 - self.prob_sum ]
         return random.choices(states_with_self, transitions_with_self)[0]
 
     def __repr__(self):
-        return f'stat'
+        return f'state({self.message})'
 
 
 initial = state("Initial")
